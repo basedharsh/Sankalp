@@ -1,13 +1,15 @@
+// ignore_for_file: file_names
+
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dotslash/Api/api.dart';
-import 'package:dotslash/ExtraScreens/volunteer_home_screen.dart';
 import 'package:dotslash/volunteerScreen/volunteeerBottomNav.dart';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 // import 'package:volunteer_app/api/apiResponse.dart';
@@ -38,7 +40,6 @@ class _VolunteerMakeProfileScreenState
 
     if (result != null) {
       File file = File(result.files.single.path!);
-      String fileName = result.files.single.name;
 
       try {
         TaskSnapshot taskSnapshot = await FirebaseStorage.instance
@@ -57,7 +58,9 @@ class _VolunteerMakeProfileScreenState
               'pdfUrl': downloadURL,
             });
           } catch (e) {
-            print(e);
+            if (kDebugMode) {
+              print(e);
+            }
           }
         }
 
@@ -67,9 +70,13 @@ class _VolunteerMakeProfileScreenState
           isLoading = false;
         });
 
-        print('PDF Link: $pdfLink');
+        if (kDebugMode) {
+          print('PDF Link: $pdfLink');
+        }
       } catch (e) {
-        print(e);
+        if (kDebugMode) {
+          print(e);
+        }
       }
     }
   }
@@ -81,7 +88,7 @@ class _VolunteerMakeProfileScreenState
           child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text("Make Profile Screen"),
+          const Text("Make Profile Screen"),
           TextFormField(
             controller: githubName,
             decoration: InputDecoration(
@@ -116,18 +123,22 @@ class _VolunteerMakeProfileScreenState
           ),
           ElevatedButton(
             onPressed: uploadPDF,
-            child: Text('Upload PDF'),
+            child: const Text('Upload PDF'),
           ),
           ElevatedButton(
               onPressed: () async {
-                print(pdfLink);
+                if (kDebugMode) {
+                  print(pdfLink);
+                }
                 String encodedUrl = Uri.encodeFull(pdfLink);
                 String url =
                     "http://10.0.2.2:5000/profileGenerate?username=${githubName.text}&userid=${FirebaseAuth.instance.currentUser!.uid}&resumelink=$encodedUrl";
                 Uri uri = Uri.parse(url);
                 var jsonData = await apiResponse(uri);
                 var decodedData = jsonDecode(jsonData);
-                print(decodedData);
+                if (kDebugMode) {
+                  print(decodedData);
+                }
                 FirebaseFirestore.instance
                     .collection('users')
                     .doc(FirebaseAuth.instance.currentUser!.uid)

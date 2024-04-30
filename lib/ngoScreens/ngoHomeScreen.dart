@@ -1,12 +1,12 @@
+// ignore_for_file: file_names
+
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dotslash/Authorization/Login/loginScreen.dart';
 import 'package:dotslash/colorScheme.dart';
-import 'package:dotslash/ngoScreens/NgoConstants/Constant.dart';
 import 'package:dotslash/ngoScreens/NgoWidgets/NgoProjects.dart';
 import 'package:dotslash/ngoScreens/NgoWidgets/ngoDrawer.dart';
 import 'package:dotslash/ngoScreens/inivite_upoad.dart';
-import 'package:dotslash/ExtraScreens/drawer/drawer.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class NgoHomeScreen extends StatefulWidget {
@@ -42,7 +42,7 @@ class _NgoHomeScreenState extends State<NgoHomeScreen> {
 
         setState(() {
           projects = querySnapshot.docs.map((doc) {
-            var data = doc.data() as Map<String, dynamic>;
+            var data = doc.data();
 
             return {
               'projectName': data['projectName'] ?? '',
@@ -62,14 +62,19 @@ class _NgoHomeScreenState extends State<NgoHomeScreen> {
             };
           }).toList();
 
-          print("The projects are: $projects");
+          if (kDebugMode) {
+            print("The projects are: $projects");
+          }
         });
       } catch (e) {
-        print('Error fetching projects: $e');
+        if (kDebugMode) {
+          print('Error fetching projects: $e');
+        }
       }
     }
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppStyle.BackgroundColor,
@@ -95,7 +100,7 @@ class _NgoHomeScreenState extends State<NgoHomeScreen> {
         ),
         actions: <Widget>[
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Row(
               children: [
                 Icon(
@@ -103,10 +108,10 @@ class _NgoHomeScreenState extends State<NgoHomeScreen> {
                   color: AppStyle.TextColor1,
                   size: 40,
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 20,
                 ),
-                CircleAvatar(
+                const CircleAvatar(
                   //Image For Ngo
                   backgroundImage:
                       NetworkImage('https://via.placeholder.com/150'),
@@ -226,15 +231,7 @@ class _NgoHomeScreenState extends State<NgoHomeScreen> {
                                 ),
                               ),
                               Text(
-                                project['projectStartDate']
-                                            .toString()
-                                            .substring(0, 10) +
-                                        " to " +
-                                        project['projectEndDate']
-                                            .toString()
-                                            .substring(0, 10) ??
-                                    "" ??
-                                    '',
+                                "${project['projectStartDate'].toString().substring(0, 10)} to ${project['projectEndDate'].toString().substring(0, 10)}",
                                 style: const TextStyle(
                                   fontSize: 13,
                                   letterSpacing: 1.2,
@@ -255,10 +252,7 @@ class _NgoHomeScreenState extends State<NgoHomeScreen> {
                                 ),
                               ),
                               Text(
-                                project['projectStartTime'].toString() +
-                                        " to " +
-                                        project['projectEndTime'].toString() ??
-                                    '',
+                                "${project['projectStartTime']} to ${project['projectEndTime']}",
                                 style: const TextStyle(
                                   fontSize: 13,
                                   letterSpacing: 1.2,
@@ -294,110 +288,12 @@ class _NgoHomeScreenState extends State<NgoHomeScreen> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => UploadProject(),
+              builder: (context) => const UploadProject(),
             ),
           );
         },
         child: const Icon(Icons.add, color: Colors.white),
       ),
-    );
-  }
-
-  void _showAddProjectModal(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      builder: (BuildContext bc) {
-        return Container(
-          padding: const EdgeInsets.all(10),
-          child: Wrap(
-            children: <Widget>[
-              TextField(
-                decoration: const InputDecoration(labelText: 'Project Name'),
-                onChanged: (value) {
-                  newProjectName = value;
-                },
-              ),
-              TextField(
-                decoration:
-                    const InputDecoration(labelText: 'Project Image URL'),
-                onChanged: (value) {
-                  newProjectImageUrl = value;
-                },
-              ),
-              TextField(
-                decoration: const InputDecoration(labelText: 'Project Time'),
-                onChanged: (value) {
-                  newProjectTime = value;
-                },
-              ),
-              TextField(
-                decoration:
-                    const InputDecoration(labelText: 'Project Description'),
-                onChanged: (value) {
-                  newProjectDescription = value;
-                },
-              ),
-              TextField(
-                decoration: const InputDecoration(labelText: 'Project Need'),
-                onChanged: (value) {
-                  newProjectNeed = value;
-                },
-              ),
-              ElevatedButton(
-                child: const Text('Add Project'),
-                onPressed: () async {
-                  String userId = FirebaseAuth.instance.currentUser?.uid ?? '';
-                  // Create a new project map
-                  Map<String, String> newProject = {
-                    'userId': userId,
-                    'projectName': newProjectName,
-                    'projectImage': newProjectImageUrl,
-                    'projectTime': newProjectTime,
-                    'projectDescription': newProjectDescription,
-                    'projectNeed': newProjectNeed,
-                    // Add other details as necessary
-                  };
-
-                  // Save to Firestore in a separate collection (e.g., 'projects')
-                  try {
-                    DocumentReference projectRef = await FirebaseFirestore
-                        .instance
-                        .collection('projects')
-                        .add(newProject);
-
-                    // Get the current user's ID (ensure user is logged in and user ID is available)
-                    String userId =
-                        FirebaseAuth.instance.currentUser?.uid ?? '';
-
-                    // Add the project reference to the user's document in 'users' collection
-                    FirebaseFirestore.instance
-                        .collection('users')
-                        .doc(userId)
-                        .update({
-                      'projectList': FieldValue.arrayUnion([
-                        projectRef.id
-                      ]) // Add the project ID to the user's project list
-                    });
-
-                    // Update the local list if Firestore write was successful
-                    setState(() {
-                      projectName.add(newProjectName);
-                      projectImage.add(newProjectImageUrl);
-                      projectTime.add(newProjectTime);
-                      projectDetails[newProjectName] = newProject;
-                      projects.add(projectDetails);
-                    });
-                  } catch (e) {
-                    print("Error adding project to Firestore: $e");
-                  }
-
-                  Navigator.of(context).pop(); // Close the modal sheet
-                },
-              )
-            ],
-          ),
-        );
-      },
     );
   }
 }

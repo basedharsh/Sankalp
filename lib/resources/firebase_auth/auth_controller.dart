@@ -1,10 +1,11 @@
+// ignore_for_file: depend_on_referenced_packages, library_prefixes
+
 import 'dart:io';
-import 'package:dotslash/ExtraScreens/homeScreen.dart';
 import 'package:dotslash/models/user_models/user_model.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
 import 'package:path/path.dart' as Path;
@@ -31,7 +32,9 @@ class AuthController extends GetxController {
 
     await taskSnapshot.ref.getDownloadURL().then((value) {
       imageUrl = value;
-      print('Downloaded URL: $value');
+      if (kDebugMode) {
+        print('Downloaded URL: $value');
+      }
     });
     return imageUrl;
   }
@@ -58,9 +61,5 @@ class AuthController extends GetxController {
     });
 
     // After updating, fetch the userType to decide navigation
-    DocumentSnapshot userDoc =
-        await FirebaseFirestore.instance.collection("users").doc(uid).get();
-    Map<String, dynamic> userData = userDoc.data() as Map<String, dynamic>;
-    String userType = userData['userType'] ?? '';
   }
 }

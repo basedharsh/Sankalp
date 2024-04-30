@@ -1,11 +1,14 @@
+// ignore_for_file: file_names
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dotslash/Authorization/Login/loginScreen.dart';
 import 'package:dotslash/colorScheme.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 class NgoDrawer extends StatefulWidget {
+  const NgoDrawer({super.key});
+
   @override
   State<NgoDrawer> createState() => _NgoDrawerState();
 }

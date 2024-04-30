@@ -69,6 +69,7 @@ dependencies:
   google_maps_flutter: ^2.5.3
   screenshot: ^2.3.0
   share_plus: ^9.0.0
+  uuid: ^4.4.0
 
 dev_dependencies:
   flutter_test:

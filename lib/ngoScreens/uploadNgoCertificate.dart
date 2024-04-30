@@ -1,16 +1,17 @@
-import 'package:dotslash/ngoScreens/ngoBottomNavbar.dart';
-import 'package:dotslash/ngoScreens/ngoHomeScreen.dart';
+// ignore_for_file: file_names
+
 import 'package:dotslash/ngoScreens/ngoNotApproved.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
 import 'dart:io';
 
 class UploadPDFPage extends StatefulWidget {
+  const UploadPDFPage({super.key});
+
   @override
   _UploadPDFPageState createState() => _UploadPDFPageState();
 }

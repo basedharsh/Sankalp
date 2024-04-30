@@ -1,6 +1,5 @@
 import 'package:dotslash/volunteerScreen/VolWid/TimelineWid.dart';
 import 'package:flutter/material.dart';
-import 'package:timeline_tile/timeline_tile.dart';
 
 class VolTimeLine extends StatefulWidget {
   const VolTimeLine({super.key});
