@@ -1,11 +1,7 @@
 import 'package:dotslash/Feed/feedPage.dart';
 import 'package:dotslash/Leaderboard/leaderboard.dart';
 import 'package:dotslash/colorScheme.dart';
-import 'package:dotslash/ngoScreens/ngoChatScreen.dart';
-import 'package:dotslash/ngoScreens/ngoProfile.dart';
 
-import 'package:dotslash/ngoScreens/ngoHomeScreen.dart';
-import 'package:dotslash/volunteerScreen/volChatPage.dart';
 import 'package:dotslash/volunteerScreen/volHomeScreen.dart';
 import 'package:dotslash/volunteerScreen/volProfilePage.dart';
 import 'package:flutter/material.dart';

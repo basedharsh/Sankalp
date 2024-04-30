@@ -1,7 +1,9 @@
+// ignore_for_file: file_names
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dotslash/colorScheme.dart';
 import 'package:dotslash/ngoScreens/NgoWidgets/ProjectApproveCard.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class NgoProjectPage extends StatefulWidget {
@@ -18,7 +20,8 @@ class NgoProjectPage extends StatefulWidget {
   final Map<dynamic, dynamic> tasks;
   final int karma;
 
-  NgoProjectPage({
+  const NgoProjectPage({
+    super.key,
     required this.projectImage,
     required this.projectName,
     required this.projectReviews,
@@ -79,7 +82,9 @@ class _NgoProjectPageState extends State<NgoProjectPage> {
     setState(() {
       loading = false;
     });
-    print(appliedUsersData);
+    if (kDebugMode) {
+      print(appliedUsersData);
+    }
   }
 
   void _addTaskFields() {
@@ -96,9 +101,15 @@ class _NgoProjectPageState extends State<NgoProjectPage> {
     final db = FirebaseFirestore.instance;
     int totalKarma = 0;
     for (int i = 0; i < taskDescriptionControllers.length; i++) {
-      print("Task ${i + 1}:");
-      print("Task Description: ${taskDescriptionControllers[i].text}");
-      print("Karma Points: ${karmaPointsControllers[i].text}");
+      if (kDebugMode) {
+        print("Task ${i + 1}:");
+      }
+      if (kDebugMode) {
+        print("Task Description: ${taskDescriptionControllers[i].text}");
+      }
+      if (kDebugMode) {
+        print("Karma Points: ${karmaPointsControllers[i].text}");
+      }
       totalKarma = totalKarma + int.parse(karmaPointsControllers[i].text);
       setState(() {
         tasks[taskDescriptionControllers[i].text] =
@@ -118,7 +129,9 @@ class _NgoProjectPageState extends State<NgoProjectPage> {
 
   @override
   Widget build(BuildContext context) {
-    print(status);
+    if (kDebugMode) {
+      print(status);
+    }
     return Scaffold(
       body: Stack(
         children: [
@@ -203,28 +216,26 @@ class _NgoProjectPageState extends State<NgoProjectPage> {
                               letterSpacing: 1.2,
                             ),
                           ),
-                          Container(
-                            child: Row(
-                              children: [
-                                Image.asset(
-                                  'assets/icons/clock.png',
+                          Row(
+                            children: [
+                              Image.asset(
+                                'assets/icons/clock.png',
+                                color: Colors.grey,
+                                width: 17,
+                                height: 17,
+                              ),
+                              const SizedBox(
+                                width: 6,
+                              ),
+                              Text(
+                                widget.projectTime,
+                                style: const TextStyle(
                                   color: Colors.grey,
-                                  width: 17,
-                                  height: 17,
+                                  fontSize: 13,
+                                  letterSpacing: 1.2,
                                 ),
-                                const SizedBox(
-                                  width: 6,
-                                ),
-                                Text(
-                                  widget.projectTime,
-                                  style: const TextStyle(
-                                    color: Colors.grey,
-                                    fontSize: 13,
-                                    letterSpacing: 1.2,
-                                  ),
-                                ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
@@ -508,8 +519,6 @@ class _NgoProjectPageState extends State<NgoProjectPage> {
   }
 
   Widget _buildBottomSheetContent(BuildContext context) {
-    TextEditingController textFieldController = TextEditingController();
-
     return Padding(
       padding: EdgeInsets.all(16.0),
       child: Column(
@@ -528,7 +537,6 @@ class _NgoProjectPageState extends State<NgoProjectPage> {
           ElevatedButton(
             onPressed: () {
               // Handling the text or other operations
-              String enteredText = textFieldController.text;
 
               // Here, update Firestore and local state to mark the project as Complete
               FirebaseFirestore.instance

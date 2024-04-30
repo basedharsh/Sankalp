@@ -1,5 +1,7 @@
-import 'package:dotslash/ExtraScreens/homeScreen.dart';
+// ignore_for_file: file_names
+
 import 'package:dotslash/ngoScreens/ngoBottomNavbar.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -407,7 +409,7 @@ class _NgoEditProfileState extends State<NgoEditProfile> {
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => NgoBottomNavbar(),
+                            builder: (context) => const NgoBottomNavbar(),
                           ),
                         );
                       },
@@ -441,7 +443,9 @@ class _NgoEditProfileState extends State<NgoEditProfile> {
   }
 
   Future _pickImageFromGallery() async {
-    print("profile picture");
+    if (kDebugMode) {
+      print("profile picture");
+    }
     final returnedImge =
         await ImagePicker().pickImage(source: ImageSource.gallery);
 

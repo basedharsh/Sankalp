@@ -3,12 +3,10 @@ import 'package:dotslash/Authorization/Login/loginAuth.dart';
 import 'package:dotslash/Authorization/Login/loginScreen.dart';
 import 'package:dotslash/Authorization/Signup/signupAuth.dart';
 import 'package:dotslash/ExtraScreens/drawer/my_projects/my_projects.dart';
-import 'package:dotslash/ExtraScreens/volunteer_home_screen.dart';
 import 'package:dotslash/Widgets/authTile.dart';
 import 'package:dotslash/ngoScreens/inivite_upoad.dart';
 
 import 'package:dotslash/ngoScreens/ngoBottomNavbar.dart';
-import 'package:dotslash/ngoScreens/ngoHomeScreen.dart';
 
 import 'package:dotslash/ngoScreens/ngoNotApproved.dart';
 import 'package:dotslash/ExtraScreens/category_list/category_tabs/category_tab.dart';

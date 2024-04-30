@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import '../ExtraScreens/search/read_project/read_project.dart';
+
 import 'package:string_similarity/string_similarity.dart';
 
 class ItemData {

@@ -1,13 +1,16 @@
+// ignore_for_file: file_names
+
 import 'package:dotslash/Feed/feedPage.dart';
 import 'package:dotslash/Leaderboard/leaderboard.dart';
 import 'package:dotslash/colorScheme.dart';
-import 'package:dotslash/ngoScreens/ngoChatScreen.dart';
 import 'package:dotslash/ngoScreens/ngoProfile.dart';
 
 import 'package:dotslash/ngoScreens/ngoHomeScreen.dart';
 import 'package:flutter/material.dart';
 
 class NgoBottomNavbar extends StatefulWidget {
+  const NgoBottomNavbar({super.key});
+
   @override
   _NgoBottomNavbarState createState() => _NgoBottomNavbarState();
 }

@@ -1,15 +1,11 @@
+// ignore_for_file: file_names, prefer_typing_uninitialized_variables
+
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dotslash/Authorization/Login/loginScreen.dart';
 import 'package:dotslash/Feed/feedCardWid.dart';
 import 'package:dotslash/Feed/feedUpload.dart';
 import 'package:dotslash/colorScheme.dart';
-import 'package:dotslash/ngoScreens/NgoConstants/Constant.dart';
-import 'package:dotslash/ngoScreens/NgoWidgets/NgoProjects.dart';
-import 'package:dotslash/ngoScreens/NgoWidgets/ngoDrawer.dart';
-import 'package:dotslash/ngoScreens/inivite_upoad.dart';
-import 'package:dotslash/ExtraScreens/drawer/drawer.dart';
 import 'package:dotslash/volunteerScreen/VolWid/volDrawer.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class FeedPage extends StatefulWidget {
@@ -47,7 +43,7 @@ class _FeedPageState extends State<FeedPage> {
       List<Map<String, dynamic>> tempPosts = [];
 
       for (var doc in querySnapshot.docs) {
-        var data = doc.data() as Map<String, dynamic>;
+        var data = doc.data();
         DocumentSnapshot userDoc = await FirebaseFirestore.instance
             .collection("users")
             .doc(data['userID'] as String)
@@ -80,10 +76,13 @@ class _FeedPageState extends State<FeedPage> {
         posts = tempPosts;
       });
     } catch (e) {
-      print('Error fetching posts: $e');
+      if (kDebugMode) {
+        print('Error fetching posts: $e');
+      }
     }
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppStyle.BackgroundColor,
@@ -106,10 +105,10 @@ class _FeedPageState extends State<FeedPage> {
         ),
         actions: <Widget>[
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Row(
               children: [
-                SizedBox(
+                const SizedBox(
                   width: 20,
                 ),
                 CircleAvatar(

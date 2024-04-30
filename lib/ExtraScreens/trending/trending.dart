@@ -1,8 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import '../../resources/trendData/trend_data.dart';
-import 'tread_page/trend_page.dart';
 
 class Trending extends StatefulWidget {
   final List<Widget> trendingItems;
@@ -17,6 +16,7 @@ class _TrendingState extends State<Trending> {
   List trendingItems = [];
   int _currentIndex = 0;
   int _currentDotIndex = 0;
+  @override
   void initState() {
     super.initState();
     fetchTrendData();
@@ -26,7 +26,9 @@ class _TrendingState extends State<Trending> {
     dynamic trend = await TrendingData().fetchtrendingData(context);
 
     if (trend == null) {
-      print('Error fetching trend data');
+      if (kDebugMode) {
+        print('Error fetching trend data');
+      }
     } else {
       setState(() {
         trendingItems = trend;

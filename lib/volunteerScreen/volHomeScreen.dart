@@ -1,12 +1,13 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:dotslash/ExtraScreens/category_list/category_list.dart';
-import 'package:dotslash/ExtraScreens/drawer/drawer.dart';
+
 import 'package:dotslash/ExtraScreens/explore_projects/explore_projects.dart';
 
-import 'package:dotslash/Widgets/search_page.dart';
 import 'package:dotslash/colorScheme.dart';
 import 'package:dotslash/resources/exploreData/explore_data.dart';
 import 'package:dotslash/volunteerScreen/VolWid/volDrawer.dart';
-import 'package:dotslash/volunteerScreen/volunteerProjectScreen.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
