@@ -10,6 +10,7 @@ import 'package:dotslash/volunteerScreen/VolWid/volDrawer.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
@@ -41,7 +42,9 @@ class _VolHomeScreenState extends State<VolHomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print("Explore Items: $exploreItems");
+    if (kDebugMode) {
+      print("Explore Items: $exploreItems");
+    }
     return Scaffold(
       drawer: VolDrawer(),
       appBar: AppBar(
@@ -93,7 +96,7 @@ class _VolHomeScreenState extends State<VolHomeScreen> {
                         fontSize: 24,
                       ),
                     ),
-                    SizedBox(width: 2),
+                    const SizedBox(width: 2),
                     Image.asset(
                       'assets/images/karma_final.png', // Adjust the path accordingly
                       width: 35, // Adjust the width as needed
@@ -108,7 +111,7 @@ class _VolHomeScreenState extends State<VolHomeScreen> {
         actions: [
           Row(
             children: [
-              SizedBox(width: 10),
+              const SizedBox(width: 10),
               StreamBuilder(
                 stream: FirebaseFirestore.instance
                     .collection('users')
@@ -130,7 +133,7 @@ class _VolHomeScreenState extends State<VolHomeScreen> {
                   );
                 },
               ),
-              SizedBox(width: 10),
+              const SizedBox(width: 10),
             ],
           ),
         ],
@@ -144,11 +147,11 @@ class _VolHomeScreenState extends State<VolHomeScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(
+            const Padding(
+              padding: EdgeInsets.symmetric(
                 horizontal: 20.0,
                 vertical: 15,
               ),
@@ -163,7 +166,7 @@ class _VolHomeScreenState extends State<VolHomeScreen> {
               ),
             ),
             isLoading
-                ? Container(
+                ? SizedBox(
                     height: 180,
                     child: Center(
                       child: Lottie.asset(
@@ -175,11 +178,11 @@ class _VolHomeScreenState extends State<VolHomeScreen> {
                     ),
                   )
                 : ExploreProjects(exploreItems: exploreItems),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(
+            const Padding(
+              padding: EdgeInsets.symmetric(
                 horizontal: 20.0,
                 vertical: 8,
               ),
@@ -193,12 +196,12 @@ class _VolHomeScreenState extends State<VolHomeScreen> {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Categories(),
-            SizedBox(height: 20),
-            Text(
+            const SizedBox(height: 20),
+            const Text(
               "Enrolled Projects",
               style: TextStyle(
                 color: Colors.black,
@@ -209,7 +212,7 @@ class _VolHomeScreenState extends State<VolHomeScreen> {
             ),
             // Add a ListView of cards for recent projects
 
-            Container(
+            SizedBox(
               height: 200, // Adjust the height as needed
               child: StreamBuilder(
                 stream: FirebaseFirestore.instance
@@ -218,13 +221,13 @@ class _VolHomeScreenState extends State<VolHomeScreen> {
                     .snapshots(),
                 builder: (context, userSnapshot) {
                   if (userSnapshot.connectionState == ConnectionState.waiting) {
-                    return Center(
+                    return const Center(
                       child: CircularProgressIndicator(),
                     );
                   }
 
                   if (!userSnapshot.hasData) {
-                    return Center(
+                    return const Center(
                       child: Text("User not found"),
                     );
                   }
@@ -243,7 +246,7 @@ class _VolHomeScreenState extends State<VolHomeScreen> {
                           builder: (context, projectSnapshot) {
                             if (projectSnapshot.connectionState ==
                                 ConnectionState.waiting) {
-                              return Center(
+                              return const Center(
                                 child: CircularProgressIndicator(),
                               );
                             }
@@ -252,7 +255,7 @@ class _VolHomeScreenState extends State<VolHomeScreen> {
                                 (projectSnapshot.data as QuerySnapshot)
                                     .docs
                                     .isEmpty) {
-                              return Center(
+                              return const Center(
                                 child: Text("No recent projects"),
                               );
                             }
@@ -273,7 +276,7 @@ class _VolHomeScreenState extends State<VolHomeScreen> {
                                     onTap: () {
                                       // Action on tap
                                     },
-                                    child: Container(
+                                    child: SizedBox(
                                       width: 150, // Adjust the width as needed
 
                                       child: Card(
@@ -281,7 +284,7 @@ class _VolHomeScreenState extends State<VolHomeScreen> {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.stretch,
                                           children: [
-                                            Container(
+                                            SizedBox(
                                               height:
                                                   70, // Adjust as needed, e.g., 50% of container height
                                               child: Image.network(
@@ -295,7 +298,7 @@ class _VolHomeScreenState extends State<VolHomeScreen> {
                                               child: Text(
                                                 project['projectName'],
                                                 textAlign: TextAlign.center,
-                                                style: TextStyle(
+                                                style: const TextStyle(
                                                   fontWeight: FontWeight.bold,
                                                 ),
                                               ),
@@ -318,7 +321,7 @@ class _VolHomeScreenState extends State<VolHomeScreen> {
                             );
                           },
                         )
-                      : Center(
+                      : const Center(
                           child: Text("You have no projects in your list."));
                 },
               ),

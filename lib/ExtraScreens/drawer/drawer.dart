@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:dotslash/Authorization/Login/loginScreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +10,7 @@ import '../../resources/firebase_auth/auth_controller.dart'; // Import for the B
 
 class DrawerScreen extends StatefulWidget {
   final VoidCallback openCategoryTabsDrawer;
-  DrawerScreen({
+  const DrawerScreen({
     Key? key,
     required this.openCategoryTabsDrawer, // Initialize the callback
   }) : super(key: key);
@@ -41,7 +43,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
             Material(
               elevation: 5, // Add elevation
               color: Colors.white,
-              child: Container(
+              child: SizedBox(
                 height: 200, // Adjust the height as needed
                 child: Stack(
                   children: [
@@ -206,7 +208,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                       showDialog(
                         context: context,
                         builder: (context) {
-                          return CustomLogoutDialog();
+                          return const CustomLogoutDialog();
                         },
                       );
                     },
@@ -274,6 +276,8 @@ class _DrawerScreenState extends State<DrawerScreen> {
 }
 
 class CustomLogoutDialog extends StatelessWidget {
+  const CustomLogoutDialog({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Center(

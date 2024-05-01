@@ -10,6 +10,7 @@ class AllProjectsScreen extends StatefulWidget {
   final String needDescription;
 
   const AllProjectsScreen({
+    super.key,
     required this.imageUrl,
     required this.title,
     required this.reviewCount,
@@ -126,26 +127,24 @@ class _AllProjectsScreenState extends State<AllProjectsScreen> {
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                            Container(
-                              child: Row(
-                                children: [
-                                  Image.asset(
-                                    'assets/icons/star.png',
-                                    color: Colors.black,
-                                    width: 20,
-                                    height: 20,
+                            Row(
+                              children: [
+                                Image.asset(
+                                  'assets/icons/star.png',
+                                  color: Colors.black,
+                                  width: 20,
+                                  height: 20,
+                                ),
+                                const SizedBox(
+                                  width: 12,
+                                ),
+                                Text(
+                                  "${widget.reviewCount} reviews",
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
                                   ),
-                                  const SizedBox(
-                                    width: 12,
-                                  ),
-                                  Text(
-                                    "${widget.reviewCount} reviews",
-                                    style: const TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
                           ],
                         ),

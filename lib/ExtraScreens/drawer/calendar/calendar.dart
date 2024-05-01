@@ -1,4 +1,5 @@
 import 'package:dotslash/ExtraScreens/drawer/calendar/calendar_project/calender_project.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -191,7 +192,9 @@ class _CalendarScreenState extends State<CalendarScreen> {
                 setState(() {
                   _focusedDay = focusedDay;
                   _today = selectedDay;
-                  print(selectedDay);
+                  if (kDebugMode) {
+                    print(selectedDay);
+                  }
                 });
               },
               eventLoader: (day) =>
@@ -279,9 +282,13 @@ class _CalendarScreenState extends State<CalendarScreen> {
             child: ListView.builder(
               itemCount: projectCName.length,
               itemBuilder: (context, index) {
-                print(
-                    "Randh   :  ${projectCDetails[projectCName[index]]?['projectDate']}");
-                print(_today);
+                if (kDebugMode) {
+                  print(
+                      "Randh   :  ${projectCDetails[projectCName[index]]?['projectDate']}");
+                }
+                if (kDebugMode) {
+                  print(_today);
+                }
                 if (_today.toString().substring(0, 10) ==
                     projectCDetails[projectCName[index]]?['projectDate']) {
                   return GestureDetector(

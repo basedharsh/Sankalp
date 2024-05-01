@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dotslash/ExtraScreens/category_list/category_tabs/animal_wellfare/animal_project/animal_project.dart';
+import 'package:flutter/foundation.dart';
 
 import 'package:flutter/material.dart';
 
@@ -19,7 +20,9 @@ class _AnimalState extends State<Animal> {
         .collection("Animal Wellfare")
         .get()
         .then((value) {
-      print(value.docs[0].data());
+      if (kDebugMode) {
+        print(value.docs[0].data());
+      }
       setState(() {
         animalList = value.docs;
       });
@@ -51,7 +54,8 @@ class AnimalItem extends StatelessWidget {
   final Map<String, dynamic> itemData;
   final String projectID;
 
-  AnimalItem({
+  const AnimalItem({
+    super.key,
     required this.itemData,
     required this.projectID,
   });
@@ -82,7 +86,7 @@ class AnimalItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(
+        SizedBox(
           width: double.infinity,
           height: 200,
           child: Image.network(
@@ -107,26 +111,24 @@ class AnimalItem extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Container(
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          'assets/icons/location.png',
-                          color: Colors.black,
-                          width: 20,
-                          height: 20,
+                  Row(
+                    children: [
+                      Image.asset(
+                        'assets/icons/location.png',
+                        color: Colors.black,
+                        width: 20,
+                        height: 20,
+                      ),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      Text(
+                        itemData["project_Location"],
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
                         ),
-                        const SizedBox(
-                          width: 5,
-                        ),
-                        Text(
-                          itemData["project_Location"],
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ],
               ),

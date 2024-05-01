@@ -1,8 +1,11 @@
+// ignore_for_file: prefer_typing_uninitialized_variables, avoid_print
+
 import 'dart:async';
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:location/location.dart';
@@ -108,7 +111,9 @@ class _HelpUploadScreenState extends State<HelpUploadScreen> {
         }
       });
     } on FirebaseException catch (e) {
-      print(e);
+      if (kDebugMode) {
+        print(e);
+      }
     }
   }
 
@@ -198,7 +203,8 @@ class _HelpUploadScreenState extends State<HelpUploadScreen> {
                         print(value.latitude);
                         print(value.longitude);
                         ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text("Location Noted")));
+                            const SnackBar(
+                                content: const Text("Location Noted")));
                       });
                       // userLocation = await _getUserLocation();
                       // print(

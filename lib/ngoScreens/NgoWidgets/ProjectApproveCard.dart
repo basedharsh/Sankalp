@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, library_private_types_in_public_api
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dotslash/ngoScreens/NgoWidgets/ngoPdf.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +12,7 @@ class StatusCard extends StatefulWidget {
   final Map<dynamic, dynamic> applied;
   final String userID;
 
-  StatusCard(
+  const StatusCard(
       {Key? key,
       required this.name,
       required this.imagePath,
@@ -45,13 +47,13 @@ class _StatusCardState extends State<StatusCard> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(widget.name,
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                      style: const TextStyle(
+                          fontSize: 20, fontWeight: FontWeight.bold)),
                   Text(status),
                   Row(
                     children: <Widget>[
                       IconButton(
-                        icon: Icon(Icons.check, color: Colors.green),
+                        icon: const Icon(Icons.check, color: Colors.green),
                         onPressed: () {
                           setState(() {
                             status = "Approved";
@@ -68,7 +70,7 @@ class _StatusCardState extends State<StatusCard> {
                         },
                       ),
                       IconButton(
-                        icon: Icon(Icons.close, color: Colors.red),
+                        icon: const Icon(Icons.close, color: Colors.red),
                         onPressed: () {
                           setState(() {
                             status = "Unapproved";
@@ -103,7 +105,7 @@ class _StatusCardState extends State<StatusCard> {
                   );
                 });
               },
-              child: Text("Open Pdf"))
+              child: const Text("Open Pdf"))
         ],
       ),
     );

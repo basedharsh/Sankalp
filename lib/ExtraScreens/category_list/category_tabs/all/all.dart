@@ -127,7 +127,7 @@ Feedback mechanisms to share suggestions and concerns.""", // Add description fo
 class AllItem extends StatelessWidget {
   final ItemData itemData;
 
-  AllItem({required this.itemData});
+  const AllItem({super.key, required this.itemData});
 
   void _onReadMorePressed(BuildContext context) {
     Navigator.push(

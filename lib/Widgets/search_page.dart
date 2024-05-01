@@ -107,20 +107,20 @@ class _SearchPageState extends State<SearchPage> {
                               onTap: () {},
                               child: Card(
                                 elevation: 4.0,
-                                margin: EdgeInsets.all(8.0),
+                                margin: const EdgeInsets.all(8.0),
                                 child: Padding(
-                                  padding: EdgeInsets.all(8.0),
+                                  padding: const EdgeInsets.all(8.0),
                                   child: Row(
                                     children: [
-                                      CircleAvatar(
+                                      const CircleAvatar(
                                         backgroundImage: NetworkImage(
                                             "https://placehold.co/600x400/png"),
                                         radius: 30.0,
                                       ),
-                                      SizedBox(width: 10.0),
+                                      const SizedBox(width: 10.0),
                                       Text(
                                         name,
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             fontSize: 18.0,
                                             fontWeight: FontWeight.bold),
                                       ),
@@ -155,20 +155,20 @@ class _SearchPageState extends State<SearchPage> {
                               setState(() {
                                 searchedUsers.add(Card(
                                   elevation: 4.0,
-                                  margin: EdgeInsets.all(8.0),
+                                  margin: const EdgeInsets.all(8.0),
                                   child: Padding(
-                                    padding: EdgeInsets.all(8.0),
+                                    padding: const EdgeInsets.all(8.0),
                                     child: Row(
                                       children: [
-                                        CircleAvatar(
+                                        const CircleAvatar(
                                           backgroundImage: NetworkImage(
                                               "https://placehold.co/600x400/png"),
                                           radius: 30.0,
                                         ),
-                                        SizedBox(width: 10.0),
+                                        const SizedBox(width: 10.0),
                                         Text(
                                           name,
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                               fontSize: 18.0,
                                               fontWeight: FontWeight.bold),
                                         ),

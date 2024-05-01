@@ -3,6 +3,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dotslash/colorScheme.dart';
 import 'package:dotslash/ngoScreens/NgoWidgets/ProjectApproveCard.dart';
+// ignore: unused_import
+import 'package:dotslash/ngoScreens/Ngo_project_list.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -239,7 +241,7 @@ class _NgoProjectPageState extends State<NgoProjectPage> {
                           ),
                         ],
                       ),
-                      Container(
+                      SizedBox(
                         width: double.infinity,
                         child: Card(
                           elevation: 4,
@@ -349,11 +351,11 @@ class _NgoProjectPageState extends State<NgoProjectPage> {
                                   "$karma Karmas left",
                                   style: Theme.of(context)
                                       .textTheme
-                                      .headline6
+                                      .titleLarge
                                       ?.copyWith(fontWeight: FontWeight.bold),
                                 ),
                                 const SizedBox(height: 10),
-                                Container(
+                                SizedBox(
                                   height: 400,
                                   child: Card(
                                     elevation: 4,
@@ -368,17 +370,17 @@ class _NgoProjectPageState extends State<NgoProjectPage> {
                                             "Assigned Tasks",
                                             style: Theme.of(context)
                                                 .textTheme
-                                                .headline6
+                                                .titleLarge
                                                 ?.copyWith(
                                                     fontWeight:
                                                         FontWeight.bold),
                                           ),
-                                          Divider(),
+                                          const Divider(),
                                           Padding(
                                             padding: const EdgeInsets.symmetric(
                                                 vertical: 8.0),
                                             child: Text("${tasks.length} Tasks",
-                                                style: TextStyle(
+                                                style: const TextStyle(
                                                     fontSize: 18,
                                                     fontWeight:
                                                         FontWeight.w500)),
@@ -396,7 +398,7 @@ class _NgoProjectPageState extends State<NgoProjectPage> {
                                                 return ListTile(
                                                   title: Text(
                                                     tasks.keys.toList()[index],
-                                                    style: TextStyle(
+                                                    style: const TextStyle(
                                                         fontWeight:
                                                             FontWeight.bold),
                                                   ),
@@ -444,7 +446,7 @@ class _NgoProjectPageState extends State<NgoProjectPage> {
                                           _printTaskFieldValues();
                                           ScaffoldMessenger.of(context)
                                               .showSnackBar(
-                                            SnackBar(
+                                            const SnackBar(
                                               content: Text('Task is uploaded'),
                                               duration: Duration(seconds: 2),
                                             ),
@@ -474,7 +476,20 @@ class _NgoProjectPageState extends State<NgoProjectPage> {
                               },
                             );
                           },
-                          child: Text("Complete"))
+                          child: const Text("Complete")),
+                      // ElevatedButton(
+                      //   onPressed: () {
+                      //     Navigator.push(
+                      //       context,
+                      //       MaterialPageRoute(
+                      //         builder: (context) => VolunteerListPage(
+                      //           projectId: widget.projectId,
+                      //         ),
+                      //       ),
+                      //     );
+                      //   },
+                      //   child: Text('View Volunteers'),
+                      // ),
                     ],
                   ),
                 ),
@@ -520,11 +535,11 @@ class _NgoProjectPageState extends State<NgoProjectPage> {
 
   Widget _buildBottomSheetContent(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(16.0),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text("Confirm?"),
+          const Text("Confirm?"),
           // Uncomment and modify if the text field is needed
           // TextField(
           //   controller: textFieldController,
@@ -533,7 +548,7 @@ class _NgoProjectPageState extends State<NgoProjectPage> {
           //     border: OutlineInputBorder(),
           //   ),
           // ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           ElevatedButton(
             onPressed: () {
               // Handling the text or other operations
@@ -550,7 +565,7 @@ class _NgoProjectPageState extends State<NgoProjectPage> {
                 // Optional: Show a message or perform other UI updates
                 Navigator.of(context).pop(); // Close the bottom sheet
                 ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
+                  const SnackBar(
                     content: Text("Project marked as complete."),
                     duration: Duration(seconds: 2),
                   ),
@@ -564,7 +579,7 @@ class _NgoProjectPageState extends State<NgoProjectPage> {
                 );
               });
             },
-            child: Text('Submit'),
+            child: const Text('Submit'),
           ),
         ],
       ),

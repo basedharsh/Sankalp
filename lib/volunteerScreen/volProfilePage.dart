@@ -1,11 +1,10 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
-import 'dart:typed_data';
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, file_names
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dotslash/volunteerScreen/volEditProfile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:share/share.dart';
@@ -49,7 +48,7 @@ class _VolProfilePageState extends State<VolProfilePage> {
         var userData = userDoc.data()!;
         setState(() {
           profileData = userData;
-          profileData!['profileImageUrl'] = userData['profile_image'] ?? null;
+          profileData!['profileImageUrl'] = userData['profile_image'];
         });
 
         // Load recommendations.
@@ -63,7 +62,7 @@ class _VolProfilePageState extends State<VolProfilePage> {
               recodData.add(
                 Row(
                   children: [
-                    Container(
+                    SizedBox(
                       width: 50,
                       height: 50,
                       child: Image.network(
@@ -95,7 +94,9 @@ class _VolProfilePageState extends State<VolProfilePage> {
       }
     } catch (e) {
       // Handle any errors, perhaps set an error message in the state if you wish to display it.
-      print("Error loading user data: $e");
+      if (kDebugMode) {
+        print("Error loading user data: $e");
+      }
     } finally {
       // Always set loading to false once data fetching is done or fails.
       setState(() {
@@ -242,7 +243,7 @@ class _VolProfilePageState extends State<VolProfilePage> {
                                 ),
                               ),
                             ),
-                            Container(
+                            SizedBox(
                               height: 40,
                               child: ListView.builder(
                                 scrollDirection: Axis
@@ -443,7 +444,6 @@ class _VolProfilePageState extends State<VolProfilePage> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         ElevatedButton(
-                          child: Text('Close', style: TextStyle(fontSize: 18)),
                           style: ElevatedButton.styleFrom(
                             foregroundColor: Colors.white,
                             backgroundColor: Colors.black,
@@ -451,9 +451,9 @@ class _VolProfilePageState extends State<VolProfilePage> {
                           onPressed: () {
                             Navigator.of(context).pop();
                           },
+                          child: Text('Close', style: TextStyle(fontSize: 18)),
                         ),
                         ElevatedButton(
-                          child: Text('Share', style: TextStyle(fontSize: 18)),
                           style: ElevatedButton.styleFrom(
                             foregroundColor: Colors.white,
                             backgroundColor: Colors.blue,
@@ -474,6 +474,7 @@ class _VolProfilePageState extends State<VolProfilePage> {
                               Share.share('Check out my badge! $fileURL');
                             }
                           },
+                          child: Text('Share', style: TextStyle(fontSize: 18)),
                         ),
                       ],
                     ),

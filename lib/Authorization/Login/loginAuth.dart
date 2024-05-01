@@ -46,13 +46,15 @@ class LoginAuthorization with ChangeNotifier {
               .then((value) {
             if (value.data()!["userType"] == "Volunteer") {
               Navigator.of(context).pushAndRemoveUntil(
-                MaterialPageRoute(builder: (context) => VolunteerBottomNav()),
+                MaterialPageRoute(
+                    builder: (context) => const VolunteerBottomNav()),
                 (Route<dynamic> route) => false,
               );
             } else if (value.data()!["userType"] == "Ngo") {
               if (value.data()!["status"] == "Approved") {
                 Navigator.of(context).pushAndRemoveUntil(
-                  MaterialPageRoute(builder: (context) => NgoBottomNavbar()),
+                  MaterialPageRoute(
+                      builder: (context) => const NgoBottomNavbar()),
                   (Route<dynamic> route) => false,
                 );
               } else {

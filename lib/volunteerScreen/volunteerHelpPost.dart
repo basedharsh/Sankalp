@@ -44,11 +44,11 @@ class _VolunteerHelpPostsState extends State<VolunteerHelpPosts> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Volunteer Help Posts')),
+      appBar: AppBar(title: const Text('Volunteer Help Posts')),
       body: loading
-          ? Center(child: CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator())
           : helpData.isEmpty
-              ? Center(child: Text("No posts available"))
+              ? const Center(child: Text("No posts available"))
               : ListView.builder(
                   itemCount: helpData.length,
                   itemBuilder: (context, index) {
@@ -58,18 +58,18 @@ class _VolunteerHelpPostsState extends State<VolunteerHelpPosts> {
                     bool isLiked = likes.contains(userId);
                     return Card(
                       elevation: 5,
-                      margin: EdgeInsets.all(10),
+                      margin: const EdgeInsets.all(10),
                       child: Padding(
-                        padding: EdgeInsets.all(8),
+                        padding: const EdgeInsets.all(8),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
                             Text(data['title'],
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontSize: 20, fontWeight: FontWeight.bold)),
-                            SizedBox(height: 5),
+                            const SizedBox(height: 5),
                             Text(data['description']),
-                            SizedBox(height: 10),
+                            const SizedBox(height: 10),
                             Image.network(data['image'], fit: BoxFit.cover),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,

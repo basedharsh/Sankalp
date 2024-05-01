@@ -1,4 +1,5 @@
 import 'package:dotslash/ExtraScreens/homeScreen.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -440,7 +441,9 @@ class _MyAccountState extends State<MyAccount> {
   }
 
   Future _pickImageFromGallery() async {
-    print("profile picture");
+    if (kDebugMode) {
+      print("profile picture");
+    }
     final returnedImge =
         await ImagePicker().pickImage(source: ImageSource.gallery);
 

@@ -1,5 +1,8 @@
+// ignore_for_file: file_names, library_private_types_in_public_api
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class LinkedInPostCard extends StatefulWidget {
@@ -65,7 +68,7 @@ class _LinkedInPostCardState extends State<LinkedInPostCard> {
             title: Text(widget.name),
             subtitle: Text('${widget.title} • ${widget.postingTime}'),
             trailing: IconButton(
-              icon: Icon(Icons.more_horiz),
+              icon: const Icon(Icons.more_horiz),
               onPressed: () {},
             ),
           ),
@@ -85,7 +88,7 @@ class _LinkedInPostCardState extends State<LinkedInPostCard> {
                           children: <Widget>[
                             Text(
                               hiddenText ? "Read more" : "Read less",
-                              style: TextStyle(color: Colors.blue),
+                              style: const TextStyle(color: Colors.blue),
                             ),
                           ],
                         ),
@@ -102,7 +105,7 @@ class _LinkedInPostCardState extends State<LinkedInPostCard> {
           if (widget.postImageUrl != null)
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Container(
+              child: SizedBox(
                 width: double.infinity,
                 child: Image.network(
                   widget.postImageUrl!,
@@ -113,11 +116,13 @@ class _LinkedInPostCardState extends State<LinkedInPostCard> {
           ButtonBar(
             children: <Widget>[
               TextButton.icon(
-                icon: Icon(Icons.thumb_up),
+                icon: const Icon(Icons.thumb_up),
                 label: Text(widget.likes.length.toString()),
                 onPressed: () {
                   if (widget.userID == currentUserID) {
-                    print("Cannot Like Own Post");
+                    if (kDebugMode) {
+                      print("Cannot Like Own Post");
+                    }
                   } else {
                     if (widget.likes.contains(currentUserID)) {
                       setState(() {
@@ -131,7 +136,9 @@ class _LinkedInPostCardState extends State<LinkedInPostCard> {
                           .collection("users")
                           .doc(widget.userID)
                           .update({'karma': FieldValue.increment(-10)});
-                      print("UnLiked");
+                      if (kDebugMode) {
+                        print("UnLiked");
+                      }
                     } else {
                       setState(() {
                         widget.likes.add(currentUserID);
@@ -144,7 +151,9 @@ class _LinkedInPostCardState extends State<LinkedInPostCard> {
                           .collection("users")
                           .doc(widget.userID)
                           .update({'karma': FieldValue.increment(10)});
-                      print("Liked");
+                      if (kDebugMode) {
+                        print("Liked");
+                      }
                     }
                     // setState(() {
                     //   widget.likes.add(FirebaseAuth.instance.currentUser!.uid);
@@ -153,13 +162,13 @@ class _LinkedInPostCardState extends State<LinkedInPostCard> {
                 },
               ),
               TextButton.icon(
-                icon: Icon(Icons.comment),
-                label: Text('Comment'),
+                icon: const Icon(Icons.comment),
+                label: const Text('Comment'),
                 onPressed: () {},
               ),
               TextButton.icon(
-                icon: Icon(Icons.share),
-                label: Text('Share'),
+                icon: const Icon(Icons.share),
+                label: const Text('Share'),
                 onPressed: () {},
               ),
             ],

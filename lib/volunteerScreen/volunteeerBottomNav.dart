@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:dotslash/Feed/feedPage.dart';
 import 'package:dotslash/Leaderboard/leaderboard.dart';
 import 'package:dotslash/colorScheme.dart';
@@ -7,6 +9,8 @@ import 'package:dotslash/volunteerScreen/volProfilePage.dart';
 import 'package:flutter/material.dart';
 
 class VolunteerBottomNav extends StatefulWidget {
+  const VolunteerBottomNav({super.key});
+
   @override
   _VolunteerBottomNavState createState() => _VolunteerBottomNavState();
 }

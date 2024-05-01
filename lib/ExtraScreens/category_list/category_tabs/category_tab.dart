@@ -24,16 +24,16 @@ class _CategoryTabsState extends State<CategoryTabs>
   late TabController _controller;
 
   final List<Widget> _tabs = [
-    Tab(text: 'All'),
-    Tab(text: 'Entertainment'),
-    Tab(text: 'Social Impact'),
-    Tab(text: 'Animal Wellfare'),
-    Tab(text: 'Environment'),
-    Tab(text: 'Trainer'),
-    Tab(text: 'Chef'),
+    const Tab(text: 'All'),
+    const Tab(text: 'Entertainment'),
+    const Tab(text: 'Social Impact'),
+    const Tab(text: 'Animal Wellfare'),
+    const Tab(text: 'Environment'),
+    const Tab(text: 'Trainer'),
+    const Tab(text: 'Chef'),
   ];
 
-  List<String> _tabLabels = [
+  final List<String> _tabLabels = [
     'All',
     'Entertainment',
     'Social Impact',
@@ -115,8 +115,8 @@ class _CategoryTabsState extends State<CategoryTabs>
             ),
           ],
           bottom: PreferredSize(
-            preferredSize: Size.fromHeight(48.0),
-            child: Container(
+            preferredSize: const Size.fromHeight(48.0),
+            child: SizedBox(
               height: 48.0,
               child: TabBar(
                 controller: _controller,

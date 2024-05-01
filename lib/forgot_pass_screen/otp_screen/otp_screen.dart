@@ -30,32 +30,30 @@ class _OTPScreenState extends State<OTPScreen> {
         child: Center(
           child: Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.only(
+              const Padding(
+                padding: EdgeInsets.only(
                   top: 160,
                 ),
-                child: Container(
-                  child: const Column(
-                    children: [
-                      Text(
-                        "Enter OTP",
-                        style: TextStyle(
-                          fontSize: 60,
-                          fontWeight: FontWeight.bold,
-                        ),
+                child: Column(
+                  children: [
+                    Text(
+                      "Enter OTP",
+                      style: TextStyle(
+                        fontSize: 60,
+                        fontWeight: FontWeight.bold,
                       ),
-                      SizedBox(
-                        height: 15,
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    Text(
+                      "An 6 digit code has been sent to\n+91 ******0980.",
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700,
                       ),
-                      Text(
-                        "An 6 digit code has been sent to\n+91 ******0980.",
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      )
-                    ],
-                  ),
+                    )
+                  ],
                 ),
               ),
               Padding(
@@ -92,7 +90,7 @@ class _OTPScreenState extends State<OTPScreen> {
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => HomeScreen(),
+                        builder: (context) => const HomeScreen(),
                       ),
                     );
                   },
