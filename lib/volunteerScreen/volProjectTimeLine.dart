@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:dotslash/volunteerScreen/VolWid/TimelineWid.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +17,7 @@ class _VolTimeLineState extends State<VolTimeLine> {
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: ListView(
-          children: [
+          children: const [
             //timeline start
             MyTimeLineWid(
               isFirst: true,

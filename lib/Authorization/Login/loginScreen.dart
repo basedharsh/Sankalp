@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, file_names
 import 'package:dotslash/Authorization/Login/loginAuth.dart';
 import 'package:dotslash/Authorization/Signup/signUpScreen.dart';
 import 'package:dotslash/Widgets/authTile.dart';
@@ -15,8 +15,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   bool passwordObsured = true;
   bool showError = false;
@@ -147,7 +147,7 @@ class _LoginScreenState extends State<LoginScreen> {
               const SizedBox(
                 height: 60,
               ),
-              Container(
+              SizedBox(
                 width: 280,
                 child: Column(
                   children: [
@@ -270,80 +270,78 @@ class _LoginScreenState extends State<LoginScreen> {
               const SizedBox(
                 height: 30,
               ),
-              Container(
-                child: Column(
-                  children: [
-                    SizedBox(
-                      width: 280,
-                      height: 50,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          setState(() {
-                            // validateEmail();
-                            // showError = _passwordController.text.isEmpty;
-                            loginAuth.loginValidation(
-                                emailAddress: _emailController,
-                                password: _passwordController,
-                                context: context);
-                          });
-                        },
-                        style: ButtonStyle(
-                          shape: MaterialStateProperty.all(
-                            RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
+              Column(
+                children: [
+                  SizedBox(
+                    width: 280,
+                    height: 50,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          // validateEmail();
+                          // showError = _passwordController.text.isEmpty;
+                          loginAuth.loginValidation(
+                              emailAddress: _emailController,
+                              password: _passwordController,
+                              context: context);
+                        });
+                      },
+                      style: ButtonStyle(
+                        shape: MaterialStateProperty.all(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
                           ),
-                          backgroundColor: MaterialStateProperty.all(
-                              AppStyle.HighlightColor),
                         ),
+                        backgroundColor:
+                            MaterialStateProperty.all(AppStyle.HighlightColor),
+                      ),
+                      child: const Text(
+                        "Log in",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 21,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 1),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text(
+                        "Don't have an account?",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.w300,
+                          letterSpacing: 1,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const SignUpScreen(),
+                            ),
+                          );
+                        },
                         child: const Text(
-                          "Log in",
+                          "Sign up",
                           style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 21,
+                              color: Colors.black,
                               fontWeight: FontWeight.bold,
                               letterSpacing: 1),
                         ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Text(
-                          "Don't have an account?",
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.w300,
-                            letterSpacing: 1,
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 5,
-                        ),
-                        InkWell(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const SignUpScreen(),
-                              ),
-                            );
-                          },
-                          child: const Text(
-                            "Sign up",
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                                letterSpacing: 1),
-                          ),
-                        )
-                      ],
-                    ),
-                  ],
-                ),
+                      )
+                    ],
+                  ),
+                ],
               ),
             ],
           ),

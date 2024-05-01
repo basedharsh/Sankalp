@@ -14,7 +14,8 @@ class CalendarProject extends StatefulWidget {
   final String projectCDescription;
   final String projectCNeed;
 
-  CalendarProject({
+  const CalendarProject({
+    super.key,
     required this.projectCImage,
     required this.projectCName,
     required this.projectCReviews,
@@ -164,26 +165,24 @@ class _CalendarProjectState extends State<CalendarProject> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          Container(
-                            child: Row(
-                              children: [
-                                Image.asset(
-                                  'assets/icons/star.png',
-                                  color: Colors.black,
-                                  width: 20,
-                                  height: 20,
+                          Row(
+                            children: [
+                              Image.asset(
+                                'assets/icons/star.png',
+                                color: Colors.black,
+                                width: 20,
+                                height: 20,
+                              ),
+                              const SizedBox(
+                                width: 12,
+                              ),
+                              Text(
+                                widget.projectCReviews,
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
                                 ),
-                                const SizedBox(
-                                  width: 12,
-                                ),
-                                Text(
-                                  widget.projectCReviews,
-                                  style: const TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
@@ -201,28 +200,26 @@ class _CalendarProjectState extends State<CalendarProject> {
                               letterSpacing: 1.2,
                             ),
                           ),
-                          Container(
-                            child: Row(
-                              children: [
-                                Image.asset(
-                                  'assets/icons/clock.png',
+                          Row(
+                            children: [
+                              Image.asset(
+                                'assets/icons/clock.png',
+                                color: Colors.black,
+                                width: 20,
+                                height: 20,
+                              ),
+                              const SizedBox(
+                                width: 6,
+                              ),
+                              Text(
+                                widget.projectCTime,
+                                style: const TextStyle(
                                   color: Colors.black,
-                                  width: 20,
-                                  height: 20,
+                                  fontSize: 13,
+                                  letterSpacing: 1.2,
                                 ),
-                                const SizedBox(
-                                  width: 6,
-                                ),
-                                Text(
-                                  widget.projectCTime,
-                                  style: const TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 13,
-                                    letterSpacing: 1.2,
-                                  ),
-                                ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                         ],
                       ),

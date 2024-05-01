@@ -1,8 +1,9 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, library_private_types_in_public_api
 
 import 'package:dotslash/ngoScreens/ngoNotApproved.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -51,7 +52,9 @@ class _UploadPDFPageState extends State<UploadPDFPage> {
               'pdfUrl': downloadURL,
             });
           } catch (e) {
-            print(e);
+            if (kDebugMode) {
+              print(e);
+            }
           }
         }
 
@@ -61,9 +64,13 @@ class _UploadPDFPageState extends State<UploadPDFPage> {
           isLoading = false;
         });
 
-        print('PDF Link: $pdfLink');
+        if (kDebugMode) {
+          print('PDF Link: $pdfLink');
+        }
       } catch (e) {
-        print(e);
+        if (kDebugMode) {
+          print(e);
+        }
       }
     }
   }
@@ -72,18 +79,18 @@ class _UploadPDFPageState extends State<UploadPDFPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Upload PDF to Firebase'),
+        title: const Text('Upload PDF to Firebase'),
       ),
       body: Center(
         child: isLoading
-            ? CircularProgressIndicator()
+            ? const CircularProgressIndicator()
             : Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  if (isUploaded) Text('Uploaded!'),
+                  if (isUploaded) const Text('Uploaded!'),
                   ElevatedButton(
                     onPressed: uploadPDF,
-                    child: Text('Upload PDF'),
+                    child: const Text('Upload PDF'),
                   ),
                   if (isUploaded)
                     ElevatedButton(
@@ -93,7 +100,7 @@ class _UploadPDFPageState extends State<UploadPDFPage> {
                             MaterialPageRoute(
                                 builder: (context) => const NgoNotApproved()));
                       },
-                      child: Text('Go to Next Page'),
+                      child: const Text('Go to Next Page'),
                     ),
                 ],
               ),

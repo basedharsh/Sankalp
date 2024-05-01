@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dotslash/ExtraScreens/category_list/category_tabs/trainer/trainers_project/trainers_project.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class Trainer extends StatefulWidget {
@@ -15,7 +16,9 @@ class _TrainerState extends State<Trainer> {
   @override
   void initState() {
     FirebaseFirestore.instance.collection("Trainer").get().then((value) {
-      print(value.docs[0].data());
+      if (kDebugMode) {
+        print(value.docs[0].data());
+      }
       setState(() {
         trainerList = value.docs;
       });
@@ -47,7 +50,8 @@ class TrainerItem extends StatelessWidget {
   final Map<String, dynamic> itemData;
   final String projectID;
 
-  TrainerItem({
+  const TrainerItem({
+    super.key,
     required this.itemData,
     required this.projectID,
   });
@@ -78,7 +82,7 @@ class TrainerItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(
+        SizedBox(
           width: double.infinity,
           height: 200,
           child: Image.network(
@@ -101,26 +105,24 @@ class TrainerItem extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  Container(
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          'assets/icons/location.png',
-                          color: Colors.black,
-                          width: 20,
-                          height: 20,
+                  Row(
+                    children: [
+                      Image.asset(
+                        'assets/icons/location.png',
+                        color: Colors.black,
+                        width: 20,
+                        height: 20,
+                      ),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      Text(
+                        itemData["project_Location"],
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
                         ),
-                        const SizedBox(
-                          width: 5,
-                        ),
-                        Text(
-                          itemData["project_Location"],
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ],
               ),

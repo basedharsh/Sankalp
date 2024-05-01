@@ -1,8 +1,11 @@
+// ignore_for_file: file_names, use_build_context_synchronously
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dotslash/ngoScreens/ngoBottomNavbar.dart';
 import 'package:dotslash/volunteerScreen/volunteeerBottomNav.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:image_picker/image_picker.dart';
@@ -31,7 +34,7 @@ class _UploadFeedState extends State<UploadFeed> {
   void uploadPicture() async {
     if (selectedImage == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("No image selected!")),
+        const SnackBar(content: Text("No image selected!")),
       );
       return;
     }
@@ -77,14 +80,16 @@ class _UploadFeedState extends State<UploadFeed> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text("Failed to upload post: $e")),
       );
-      print(e);
+      if (kDebugMode) {
+        print(e);
+      }
     }
   }
 
   void navigateBasedOnUserType(String userType) {
     if (userType == 'Ngo') {
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => NgoBottomNavbar()));
+      Navigator.pushReplacement(context,
+          MaterialPageRoute(builder: (context) => const NgoBottomNavbar()));
     } else {
       Navigator.pushReplacement(context,
           MaterialPageRoute(builder: (context) => VolunteerBottomNav()));
@@ -143,7 +148,9 @@ class _UploadFeedState extends State<UploadFeed> {
               ),
             ),
             onPressed: () {
-              print(selectedImage);
+              if (kDebugMode) {
+                print(selectedImage);
+              }
               uploadPicture();
             },
           ),
@@ -334,7 +341,9 @@ class _UploadFeedState extends State<UploadFeed> {
     }
     setState(() {
       selectedImage = File(returnedImge.path);
-      print(selectedImage);
+      if (kDebugMode) {
+        print(selectedImage);
+      }
     });
   }
 }

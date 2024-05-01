@@ -1,4 +1,4 @@
-// ignore_for_file: depend_on_referenced_packages
+// ignore_for_file: depend_on_referenced_packages, use_build_context_synchronously
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:custom_date_range_picker/custom_date_range_picker.dart';
@@ -56,8 +56,12 @@ class _UploadProjectState extends State<UploadProject> {
           case TaskState.success:
             String link = await profilePicUpdate.getDownloadURL();
             projectImageLink = link;
-            print(projectImageLink);
-            print("asdfg");
+            if (kDebugMode) {
+              print(projectImageLink);
+            }
+            if (kDebugMode) {
+              print("asdfg");
+            }
             String projectID = uuid.v1();
             Map<String, dynamic> newProject = {
               'userId': userID,
@@ -90,11 +94,13 @@ class _UploadProjectState extends State<UploadProject> {
                 .doc(projectID)
                 .set(newProject)
                 .then((value) {
-              print("Project uploaded");
+              if (kDebugMode) {
+                print("Project uploaded");
+              }
               Navigator.pop(context);
               Navigator.pushReplacement(context,
                   MaterialPageRoute(builder: (context) {
-                return NgoBottomNavbar();
+                return const NgoBottomNavbar();
               }));
             });
             break;
@@ -105,7 +111,9 @@ class _UploadProjectState extends State<UploadProject> {
         }
       });
     } on FirebaseException catch (e) {
-      print(e);
+      if (kDebugMode) {
+        print(e);
+      }
     }
   }
 
@@ -793,7 +801,9 @@ class _UploadProjectState extends State<UploadProject> {
     }
     setState(() {
       selectedImage = File(returnedImge.path);
-      print(selectedImage);
+      if (kDebugMode) {
+        print(selectedImage);
+      }
     });
   }
 }

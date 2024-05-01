@@ -86,10 +86,10 @@ class MyApp extends StatelessWidget {
                       Map<String, dynamic>? userData =
                           userSnapshot.data?.data() as Map<String, dynamic>?;
                       if (userData!["userType"] == "Volunteer") {
-                        return VolunteerBottomNav();
+                        return const VolunteerBottomNav();
                       } else {
                         if (userData["status"] == "Approved") {
-                          return NgoBottomNavbar();
+                          return const NgoBottomNavbar();
                         } else {
                           return const NgoNotApproved();
                         }

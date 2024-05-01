@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'entmt_project/entmt_project.dart';
 
@@ -15,7 +16,9 @@ class _EntmtScreenState extends State<EntmtScreen> {
   @override
   void initState() {
     FirebaseFirestore.instance.collection("Entertainment").get().then((value) {
-      print(value.docs[0].data());
+      if (kDebugMode) {
+        print(value.docs[0].data());
+      }
       setState(() {
         entmtList = value.docs;
       });
@@ -47,7 +50,7 @@ class EntmtItem extends StatelessWidget {
   final Map<String, dynamic> itemData;
   final String projectID;
 
-  EntmtItem({required this.itemData, required this.projectID});
+  const EntmtItem({super.key, required this.itemData, required this.projectID});
 
   void _onReadMorePressed(BuildContext context) {
     Navigator.push(

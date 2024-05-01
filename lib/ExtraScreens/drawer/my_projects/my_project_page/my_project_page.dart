@@ -11,7 +11,8 @@ class MyProjectPage extends StatefulWidget {
   final String projectDescription;
   final String projectNeed;
 
-  MyProjectPage({
+  const MyProjectPage({
+    super.key,
     required this.projectImage,
     required this.projectName,
     required this.projectReviews,
@@ -175,28 +176,26 @@ class _MyProjectPageState extends State<MyProjectPage> {
                               letterSpacing: 1.2,
                             ),
                           ),
-                          Container(
-                            child: Row(
-                              children: [
-                                Image.asset(
-                                  'assets/icons/clock.png',
+                          Row(
+                            children: [
+                              Image.asset(
+                                'assets/icons/clock.png',
+                                color: Colors.grey,
+                                width: 17,
+                                height: 17,
+                              ),
+                              const SizedBox(
+                                width: 6,
+                              ),
+                              Text(
+                                widget.projectTime,
+                                style: const TextStyle(
                                   color: Colors.grey,
-                                  width: 17,
-                                  height: 17,
+                                  fontSize: 13,
+                                  letterSpacing: 1.2,
                                 ),
-                                const SizedBox(
-                                  width: 6,
-                                ),
-                                Text(
-                                  widget.projectTime,
-                                  style: const TextStyle(
-                                    color: Colors.grey,
-                                    fontSize: 13,
-                                    letterSpacing: 1.2,
-                                  ),
-                                ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                         ],
                       ),

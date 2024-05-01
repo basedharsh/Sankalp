@@ -165,7 +165,7 @@ class _MyProjectsState extends State<MyProjects> {
                   ],
                 ),
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(5, 5, 5, 5),
+                  padding: const EdgeInsetsDirectional.fromSTEB(5, 5, 5, 5),
                   child: Column(
                     children: [
                       Padding(
@@ -191,13 +191,13 @@ class _MyProjectsState extends State<MyProjects> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 8.0),
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
                               projectName[index],
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
                               ),
@@ -230,14 +230,14 @@ class _MyProjectsState extends State<MyProjects> {
                       ),
                       const Spacer(),
                       Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 8.0),
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
+                                const Text(
                                   'Posted on',
                                   style: TextStyle(
                                     fontSize: 10,
@@ -249,7 +249,7 @@ class _MyProjectsState extends State<MyProjects> {
                                   projectDetails[projectName[index]]
                                           ?['projectDate'] ??
                                       '',
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontSize: 13,
                                     letterSpacing: 1.2,
                                     color: Colors.grey,
@@ -260,7 +260,7 @@ class _MyProjectsState extends State<MyProjects> {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
+                                const Text(
                                   'Time',
                                   style: TextStyle(
                                     fontSize: 10,
@@ -270,7 +270,7 @@ class _MyProjectsState extends State<MyProjects> {
                                 ),
                                 Text(
                                   projectTime[index],
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontSize: 13,
                                     letterSpacing: 1.2,
                                     color: Colors.grey,
@@ -279,8 +279,10 @@ class _MyProjectsState extends State<MyProjects> {
                               ],
                             ),
                             Text(
-                              '${projectDetails[projectName[index]]?['projectApplied'] ?? ''}',
-                              style: TextStyle(
+                              projectDetails[projectName[index]]
+                                      ?['projectApplied'] ??
+                                  '',
+                              style: const TextStyle(
                                   fontSize: 14,
                                   color: Colors.black,
                                   fontWeight: FontWeight.bold),

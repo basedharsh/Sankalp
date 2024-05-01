@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -17,6 +19,7 @@ class EntmtProjectScreen extends StatefulWidget {
   final int applied_Count;
 
   const EntmtProjectScreen({
+    super.key,
     required this.imageUrl,
     required this.title,
     required this.description,
@@ -139,26 +142,24 @@ class _EntmtProjectScreenState extends State<EntmtProjectScreen> {
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                            Container(
-                              child: Row(
-                                children: [
-                                  Image.asset(
-                                    'assets/icons/location.png',
-                                    color: Colors.black,
-                                    width: 20,
-                                    height: 20,
+                            Row(
+                              children: [
+                                Image.asset(
+                                  'assets/icons/location.png',
+                                  color: Colors.black,
+                                  width: 20,
+                                  height: 20,
+                                ),
+                                const SizedBox(
+                                  width: 5,
+                                ),
+                                Text(
+                                  widget.location,
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
                                   ),
-                                  const SizedBox(
-                                    width: 5,
-                                  ),
-                                  Text(
-                                    widget.location,
-                                    style: const TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
                           ],
                         ),

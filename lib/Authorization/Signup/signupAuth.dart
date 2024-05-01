@@ -69,13 +69,13 @@ class SignupAuthorization with ChangeNotifier {
           if (userType == "Volunteer") {
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (context) => VolunteerBottomNav(),
+                builder: (context) => const VolunteerBottomNav(),
               ),
             );
           } else if (userType == "Ngo") {
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (context) => UploadPDFPage(),
+                builder: (context) => const UploadPDFPage(),
               ),
             );
           }

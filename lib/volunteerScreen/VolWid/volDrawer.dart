@@ -45,7 +45,7 @@ class _VolDrawerState extends State<VolDrawer> {
   @override
   Widget build(BuildContext context) {
     return (loading)
-        ? CircularProgressIndicator()
+        ? const CircularProgressIndicator()
         : Drawer(
             backgroundColor: AppStyle.BackgroundColor,
             child: ListView(
@@ -56,9 +56,9 @@ class _VolDrawerState extends State<VolDrawer> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Icon(Icons.account_circle, size: 80.0),
+                      const Icon(Icons.account_circle, size: 80.0),
                       Text(profileData!['username'],
-                          style: TextStyle(fontSize: 25.0)),
+                          style: const TextStyle(fontSize: 25.0)),
                     ],
                   ),
                   decoration: BoxDecoration(
@@ -66,13 +66,13 @@ class _VolDrawerState extends State<VolDrawer> {
                   ),
                 ),
                 ListTile(
-                  leading: Icon(Icons.verified_user),
-                  title: Text('Badges and Exp'),
+                  leading: const Icon(Icons.verified_user),
+                  title: const Text('Badges and Exp'),
                   onTap: () {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => VolTimeLine(),
+                          builder: (context) => const VolTimeLine(),
                         ));
                   },
                 ),
@@ -105,46 +105,46 @@ class _VolDrawerState extends State<VolDrawer> {
                 //   },
                 // ),
                 ListTile(
-                  leading: Icon(Icons.help),
-                  title: Text('Post'),
+                  leading: const Icon(Icons.help),
+                  title: const Text('Post'),
                   onTap: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) => HelpUploadScreen(),
+                        builder: (context) => const HelpUploadScreen(),
                       ),
                     );
                   },
                 ),
                 ListTile(
-                  leading: Icon(Icons.map),
-                  title: Text('Map Page'),
+                  leading: const Icon(Icons.map),
+                  title: const Text('Map Page'),
                   onTap: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) => MapScreen(),
+                        builder: (context) => const MapScreen(),
                       ),
                     );
                   },
                 ),
                 ListTile(
-                  leading: Icon(Icons.map),
-                  title: Text('Work/Help Post'),
+                  leading: const Icon(Icons.map),
+                  title: const Text('Work/Help Post'),
                   onTap: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) => VolunteerHelpPosts(),
+                        builder: (context) => const VolunteerHelpPosts(),
                       ),
                     );
                   },
                 ),
                 ListTile(
-                  leading: Icon(Icons.logout),
-                  title: Text('Logout'),
+                  leading: const Icon(Icons.logout),
+                  title: const Text('Logout'),
                   onTap: () {
                     FirebaseAuth.instance.signOut();
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) => LoginScreen(),
+                        builder: (context) => const LoginScreen(),
                       ),
                     );
                   },

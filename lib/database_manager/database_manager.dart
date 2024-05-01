@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 
 class DatabaseManager {
   final CollectionReference exploreList =
@@ -58,13 +59,15 @@ class DatabaseManager {
 
     try {
       await exploreList.get().then((querySnapshot) {
-        querySnapshot.docs.forEach((documentSnapshot) {
+        for (var documentSnapshot in querySnapshot.docs) {
           itemsList.add(documentSnapshot.data());
-        });
+        }
       });
       return itemsList;
     } catch (e) {
-      print(e.toString());
+      if (kDebugMode) {
+        print(e.toString());
+      }
       return null;
     }
   }

@@ -1,4 +1,4 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, library_private_types_in_public_api
 
 import 'package:dotslash/Feed/feedPage.dart';
 import 'package:dotslash/Leaderboard/leaderboard.dart';
@@ -18,10 +18,10 @@ class NgoBottomNavbar extends StatefulWidget {
 class _NgoBottomNavbarState extends State<NgoBottomNavbar> {
   int _selectedIndex = 0;
   final List<Widget> _pages = [
-    NgoHomeScreen(),
-    LeaderBoard(),
-    FeedPage(),
-    NgoProfilePage()
+    const NgoHomeScreen(),
+    const LeaderBoard(),
+    const FeedPage(),
+    const NgoProfilePage()
   ];
 
   void _onItemTapped(int index) {

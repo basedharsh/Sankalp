@@ -1,3 +1,5 @@
+// ignore_for_file: use_key_in_widget_constructors
+
 import 'package:flutter/material.dart';
 
 import 'category_tabs/category_tab.dart';
@@ -47,7 +49,7 @@ class Categories extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 120, // Adjust the height as needed
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
@@ -65,7 +67,7 @@ class Categories extends StatelessWidget {
               );
             },
             child: Container(
-              margin: EdgeInsets.symmetric(horizontal: 8),
+              margin: const EdgeInsets.symmetric(horizontal: 8),
               width: 95,
               child: Column(
                 children: [

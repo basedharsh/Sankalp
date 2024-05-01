@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:share/share.dart';
 import 'package:lottie/lottie.dart';
@@ -16,7 +17,8 @@ class ReadProject extends StatefulWidget {
   final String projectID;
   final String status;
 
-  ReadProject({
+  const ReadProject({
+    super.key,
     required this.imageUrl,
     required this.title,
     required this.reviewCount,
@@ -55,7 +57,9 @@ class _ReadProjectState extends State<ReadProject> {
 
   @override
   Widget build(BuildContext context) {
-    print(widget.applied);
+    if (kDebugMode) {
+      print(widget.applied);
+    }
     return Scaffold(
       drawer: DrawerScreen(
         openCategoryTabsDrawer: openCategoryTabsDrawer,
@@ -169,27 +173,25 @@ class _ReadProjectState extends State<ReadProject> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          Container(
-                            child: Row(
-                              children: [
-                                // Image.asset(
-                                //   'assets/icons/star.png',
-                                //   color: Colors.black,
-                                //   width: 20,
-                                //   height: 20,
-                                // ),
-                                const SizedBox(
-                                  width: 12,
+                          Row(
+                            children: [
+                              // Image.asset(
+                              //   'assets/icons/star.png',
+                              //   color: Colors.black,
+                              //   width: 20,
+                              //   height: 20,
+                              // ),
+                              const SizedBox(
+                                width: 12,
+                              ),
+                              buildStatusBadge(widget.status),
+                              Text(
+                                "${widget.applied.length} applied",
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
                                 ),
-                                buildStatusBadge(widget.status),
-                                Text(
-                                  "${widget.applied.length} applied",
-                                  style: const TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
@@ -232,9 +234,9 @@ class _ReadProjectState extends State<ReadProject> {
                               backgroundColor:
                                   MaterialStateProperty.all(Colors.black),
                             ),
-                            child: Text(
+                            child: const Text(
                               "Apply for Volunteer",
-                              style: const TextStyle(
+                              style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 15,
                                 letterSpacing: 1,
@@ -257,9 +259,9 @@ class _ReadProjectState extends State<ReadProject> {
                               backgroundColor: MaterialStateProperty.all(Colors
                                   .grey), // Grey color indicates disabled state
                             ),
-                            child: Text(
+                            child: const Text(
                               "Application Closed",
-                              style: const TextStyle(
+                              style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 15,
                                 letterSpacing: 1,
@@ -268,7 +270,7 @@ class _ReadProjectState extends State<ReadProject> {
                           ),
                         )
                       else if (widget.status == "Complete")
-                        Center(
+                        const Center(
                           child: Text(
                             "The project is completed",
                             style: TextStyle(
@@ -366,14 +368,15 @@ class _ReadProjectState extends State<ReadProject> {
     }
 
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
         color: statusColor,
         borderRadius: BorderRadius.circular(20),
       ),
       child: Text(
         status,
-        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        style:
+            const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
       ),
     );
   }
