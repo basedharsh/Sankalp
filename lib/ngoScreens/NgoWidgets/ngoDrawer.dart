@@ -3,6 +3,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dotslash/Authorization/Login/loginScreen.dart';
 import 'package:dotslash/colorScheme.dart';
+import 'package:dotslash/volunteerScreen/VolWid/mapScreen.dart';
+import 'package:dotslash/volunteerScreen/helpUpload.dart';
+import 'package:dotslash/volunteerScreen/volunteerHelpPost.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -106,6 +109,28 @@ class _NgoDrawerState extends State<NgoDrawer> {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) => LoginScreen(),
+                      ),
+                    );
+                  },
+                ),
+                ListTile(
+                  leading: const Icon(Icons.map),
+                  title: const Text('Map Page'),
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const MapScreen(),
+                      ),
+                    );
+                  },
+                ),
+                ListTile(
+                  leading: const Icon(Icons.map),
+                  title: const Text('Work/Help Post'),
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const VolunteerHelpPosts(),
                       ),
                     );
                   },

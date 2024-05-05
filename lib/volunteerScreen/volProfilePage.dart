@@ -231,42 +231,67 @@ class _VolProfilePageState extends State<VolProfilePage> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text(
-                                "You are being recommended by",
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors
-                                      .deepPurple, // Stylish color for the header
+                            // Padding(
+                            //   padding: EdgeInsets.all(8.0),
+                            //   child:
+                            //    Text(
+                            //     "You are being recommended by",
+                            //     style: TextStyle(
+                            //       fontSize: 18,
+                            //       fontWeight: FontWeight.bold,
+                            //       color: Colors
+                            //           .deepPurple, // Stylish color for the header
+                            //     ),
+                            //   ),
+                            // ),
+                            // Conditionally display the hardcoded recommendation
+                            if ([
+                              "harsh",
+                              "arsu",
+                              "xyz",
+                              "shrini",
+                              "gori",
+                            ].contains(profileData!["username"].toLowerCase()))
+                              Container(
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black.withOpacity(0.1),
+                                      spreadRadius: 1,
+                                      blurRadius: 3,
+                                      offset: Offset(0, 2),
+                                    ),
+                                  ],
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "You are being recommended by",
+                                        style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.deepPurple,
+                                        ),
+                                      ),
+                                      SizedBox(height: 10),
+                                      Text(
+                                        "Parvah Ngo",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.normal,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
-                            ),
-                            SizedBox(
-                              height: 40,
-                              child: ListView.builder(
-                                scrollDirection: Axis
-                                    .horizontal, // Makes it horizontally scrollable
-                                itemCount: recodData.length,
-                                itemBuilder: (context, index) {
-                                  return Container(
-                                    margin: EdgeInsets.symmetric(horizontal: 8),
-                                    padding: EdgeInsets.symmetric(
-                                        vertical: 4, horizontal: 12),
-                                    decoration: BoxDecoration(
-                                      color: Colors.deepPurple[
-                                          100], // Light purple background for each item
-                                      borderRadius: BorderRadius.circular(
-                                          20), // Rounded corners for tags
-                                    ),
-                                    alignment: Alignment.center,
-                                    child: recodData[
-                                        index], // Assuming recodData[index] is a String or properly formatted Widget
-                                  );
-                                },
-                              ),
-                            ),
                           ],
                         ),
                       ),
@@ -356,7 +381,7 @@ class _VolProfilePageState extends State<VolProfilePage> {
           GestureDetector(
             onTap: () => _showBadgeDetails(
                 "50 Karmas Badge",
-                "Congratulations! You earned the 50 karmas badge.",
+                "Congratulations  ${profileData!['username']} ! You earned the 50 karmas badge.",
                 'https://github.githubassets.com/assets/pull-shark-default-498c279a747d.png'),
             child: CircleAvatar(
               radius: 50,
@@ -368,7 +393,7 @@ class _VolProfilePageState extends State<VolProfilePage> {
           GestureDetector(
             onTap: () => _showBadgeDetails(
                 "100 Karmas Badge",
-                "Amazing! You've reached the 100 karmas badge.",
+                "Amazing   ${profileData!['username']}! You've reached the 100 karmas badge.",
                 'https://github.githubassets.com/assets/quickdraw-default-39c6aec8ff89.png'),
             child: CircleAvatar(
               radius: 50,
